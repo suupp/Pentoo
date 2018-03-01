@@ -3,33 +3,27 @@
 <head>
   <script type="text/javascript" src="paper-full.js"></script>
   <script type="text/javascript" src="grid.js"></script>
-  <script type="text/paperscript" canvas="myCanvas">
-  var x = prompt('width','');
-  var y = prompt('height','');
-  	// Create a Paper.js Path to draw a line into it:
-/*  	var path = new Path();
-  	// Give the stroke a color
-  	path.strokeColor = 'black';
-  	var start = new Point(100, 100);
-  	// Move to start and draw a line from there
-  	path.moveTo(start);
-  	// Note the plus operator on Point objects.
-  	// PaperScript does that for us, and much more!
- 	path.lineTo(start + [ 100, -50 ]);
-    path.lineTo(start + [ 200, -520 ]);
-    path.lineTo(start + [ 100, 1150 ]); */
-  drawGridRects(x, y, paper.view.bounds);
-  </script>
+  <script type="text/javascript" src="penta.js"></script>
+
   <style media="all">
            @import url(style.css);
         </style>
 </head>
 <body>
-  <canvas id="myCanvas" width="1000" height="500"></canvas>
- <input type="button" value="start" onclick="fillRect(6,6)">
+<canvas id="myCanvas" width="700" height="0"></canvas>
+<script type="text/javascript">
+ var x = parseInt(prompt('width',''), 10);
+ var y = parseInt(prompt('height',''), 10);
 
-
-
+    var elem = document.getElementById('myCanvas');
+    elem.height=elem.width/x*y;
+</script>
+<script type="text/paperscript" canvas="myCanvas">
+    drawGridRects(x, y, paper.view.bounds);
+</script>
+<p>
+<input type="button" value="start" onclick="fillRect(x,y)">
+<input type="button" value="reset" onclick="drawGridRects(x, y, paper.view.bounds)">
+</p>
 </body>
-
 </html>
