@@ -1,0 +1,30 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*body {
+  animation-name: colorChange;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes colorChange {
+  0% {background: white}
+  25% {background: black}
+  50% {background: white}
+  75% {background: black}
+  100% {background: white}
+}
+@keyframes colorChangeText {
+  0% {color: : black}
+  25% {color: white}
+  50% {color: black}
+  75% {color: white}
+  100% {color: black}
+}
+.whiteBlackText {
+  animation-name: colorChangeText;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  font-size: 30px;
+}
