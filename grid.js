@@ -11,5 +11,5 @@ var drawGridRects = function(num_rectangles_wide, num_rectangles_tall, boundingR
 }
 
 var fillRect = function() {
-  
+
 }
