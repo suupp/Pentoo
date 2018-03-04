@@ -4,6 +4,7 @@
   <script type="text/javascript" src="paper-full.js"></script>
   <script type="text/javascript" src="grid.js"></script>
   <script type="text/javascript" src="penta.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.js"></script>
  
   <style media="all">
            @import url(style.css);
@@ -16,15 +17,48 @@
 //  var y = prompt('height','');
     var x = 10;
     var y = 7;
-    var elem = document.getElementById('myCanvas');
-    elem.height=elem.width/x*y;
+    
+// declare board size equal to grid size     
+    const BoardWidth = x;
+    const BoardHeight = y;
+//  console.log('BoardWidth='+BoardWidth);
+
+// set canvas height based on canvas width in order to have square cells
+    var canvas = document.getElementById("myCanvas");
+    canvas.height=canvas.width/x*y;
+
+// create a pointer to canvas image (needed for isRectEmpty function) 
+    var ctx = canvas.getContext("2d");
+
+// puzzle solver
+    var solutionFound = false;
+    var counter=1;
+    var solve = function() {
+        
+        if(solutionFound || counter>1) return;
+        
+        emptyRect=findFirstEmptyRect();
+        if(!emptyRect) solutionFound=true;
+        else {
+                figure_index=0;
+                // try placing figures until fit is found
+                while(!drawFigure(emptyRect[0], emptyRect[1], pentas[figure_index])) figure_index++;
+                console.log('step #'+counter+' '+emptyRect);
+                counter=counter+1;
+                solve();
+            }
+    }
+
 </script>
 <script type="text/paperscript" canvas="myCanvas">
     drawGridRects(x, y, paper.view.bounds);
 </script>
 <p>
-<input type="button" value="start" onclick="fillRect(x,y)">
-<input type="button" value="reset" onclick="drawGridRects(x, y, paper.view.bounds)">
+<input type="button" value="ADD BLOCK" onclick="fillRandomRect(x,y)">
+<input type="button" value="SOLVE!" onclick="solutionFound=false;counter=0;solve()">
+<input type="button" value="STOP" onclick="solutionFound=true">
+<input type="button" value="RESET" onclick="drawGridRects(x, y, paper.view.bounds)">
+<input type="button" value="FindEmpty" onclick="console.log(findFirstEmptyRect())">
 </p>
 </body>
 </html>
