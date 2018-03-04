@@ -1,4 +1,3 @@
-// declare array where we store penta figures
 var pentas = [];
 
 // draw a pentamino figure. figure is an array of 5. return true if drawn successfully
@@ -41,35 +40,95 @@ var clearFigure = function(position_x, position_y, figure) {
 
 // fill in the array with pentomino figures per https://en.wikipedia.org/wiki/Pentomino#Symmetry
 
-// 4 vaiations of L figure 
+// 4 vaiations of L figure
 pentas.push([[0,0], [1,0], [2,0], [3,0], [3,1]]);
 pentas.push([[0,0], [0,1], [0,2], [0,3], [-1,3]]);
 pentas.push([[0,0], [0,1], [1,1], [2,1], [3,1]]);
 pentas.push([[0,0], [1,0], [0,1], [0,2], [0,3]]);
 
-// 4 vaiations of mirrored L figure 
+// 4 vaiations of mirrored L figure
+pentas.push([[0,0], [1,0], [2,0], [3,0], [3,-1]]);
+pentas.push([[0,0], [0,1], [0,2], [0,3], [1,3]]);
+pentas.push([[0,0], [1,0], [2,0], [3,0], [0,1]]);
+pentas.push([[0,0], [1,0], [1,1], [1,2], [1,3]]);
 
-// 8 vaiations of F figure 
 
-// 8 vaiations of N figure 
+// 8 vaiations of F figure
+pentas.push([[0,0], [1,0], [1,-1], [2,-1], [1,1]]);
+pentas.push([[0,0], [0,1], [-1,1], [1,1], [1,2]]);
+pentas.push([[0,0], [0,1], [1,1], [1,2], [2,1]]);
+pentas.push([[0,0], [0,1], [1,1], [0,2], [-1,2]]);
+pentas.push([[0,0], [1,0], [1,-1], [2,0], [0,1]]);
+pentas.push([[0,0], [1,0], [1,1], [2,1], [1,2]]);
+pentas.push([[0,0], [1,0], [1,1], [1,-1], [2,1]]);
+pentas.push([[0,0], [1,0], [1,1], [2,0], [2,-1]]);
 
-// 8 vaiations of P figure 
+// 8 vaiations of N figure
+pentas.push([[0,0], [0,-1], [0,-2], [1,0], [1,1]]);
+pentas.push([[0,0], [1,0], [1,-1], [2,-1], [3,-1]]);
+pentas.push([[0,0], [1,0], [2,0], [2,-1], [3,-1]]);
+pentas.push([[0,0], [0,1], [1,1], [1,2], [1,3]]);
+pentas.push([[0,0], [1,0], [1,-1], [0,1], [0,2]]);
+pentas.push([[0,0], [1,0], [2,0], [2,1], [3,1]]);
+pentas.push([[0,0], [1,0], [1,1], [2,1], [3,1]]);
+pentas.push([[0,0], [0,1], [1,0], [1,-1], [1,-2]]);
 
-// 8 vaiations of Y figure 
+// 8 vaiations of P figure
+pentas.push([[0,0], [1,0], [2,0], [0,1], [1,1]]);
+pentas.push([[0,0], [1,0], [0,1], [1,1], [1,2]]);
+pentas.push([[0,0], [1,1], [0,1], [0,1], [1,2]]);
+pentas.push([[0,0], [1,0], [2,0], [1,-1], [2,-1]]);
+pentas.push([[0,0], [0,-1], [0,-2], [1,-1], [1,-2]]);
+pentas.push([[0,0], [1,0], [2,0], [1,1], [2,1]]);
+pentas.push([[0,0], [1,0], [0,1], [1,1], [2,1]]);
+pentas.push([[0,0], [0,1], [1,1], [1,0], [1,-1]]);
 
-// 4 vaiations of T figure 
+// 8 vaiations of Y figure
+pentas.push([[0,0], [0,1], [0,2], [0,3], [1,2]]);
+pentas.push([[0,0], [1,0], [2,0], [3,0], [1,1]]);
+pentas.push([[0,0], [1,0], [2,0], [3,0], [2,-1]]);
+pentas.push([[0,0], [0,1], [0,2], [0,3], [-1,1]]);
+pentas.push([[0,0], [1,0], [2,0], [3,0], [2,1]]);
+pentas.push([[0,0], [0,1], [0,1], [0,3], [-1,2]]);
+pentas.push([[0,0], [0,1], [0,2], [0,3], [1,1]]);
+pentas.push([[0,0], [0,1], [-1,1], [1,1], [2,1]]);
 
-// 4 vaiations of U figure 
+// 4 vaiations of T figure
+pentas.push([[0,0], [1,0], [2,0], [1,1], [1,2]]);
+pentas.push([[0,0], [0,1], [0,2], [-1,2], [1,2]]);
+pentas.push([[0,0], [1,0], [2,0], [2,-1], [2,1]]);
+pentas.push([[0,0], [0,1], [0,2], [1,1], [2,1]]);
 
-// 4 vaiations of V figure 
+// 4 vaiations of U figure
+pentas.push([[0,0], [0,1], [1,1], [2,1], [2,0]]);
+pentas.push([[0,0], [0,1], [1,0], [2,0], [2,1]]);
+pentas.push([[0,0], [0,1], [0,2], [1,0], [1,2]]);
+pentas.push([[0,0], [1,0], [1,1], [1,2], [0,2]]);
+
+// 4 vaiations of V figure
+pentas.push([[0,0], [0,1], [0,2], [1,2], [2,2]]);
+pentas.push([[0,0], [1,0], [2,0], [2,-1], [2,-2]]);
+pentas.push([[0,0], [0,1], [0,2], [1,0], [2,0]]);
+pentas.push([[0,0], [1,0], [2,0], [2,1], [2,2]]);
 
 // 4 vaiations of W figure
+pentas.push([[0,0], [0,1], [1,1], [1,2], [2,2]]);
+pentas.push([[0,0], [1,0], [1,-1], [2,-1], [2,-2]]);
+pentas.push([[0,0], [1,0], [1,1], [2,1], [2,2]]);
+pentas.push([[0,0], [0,1], [1,0], [1,-1], [2,-1]]);
 
 // 4 vaiations of Z figure
+pentas.push([[0,0], [1,0], [1,1], [1,2], [2,2]]);
+pentas.push([[0,0], [0,1], [0,2], [-1,2], [1,0]]);
+pentas.push([[0,0], [1,0], [2,0], [2,-1], [0,1]]);
+pentas.push([[0,0], [0,1], [1,1], [2,1], [2,2]]);
 
 // 2 vaiations of I figure
+pentas.push([[0,0], [1,0], [2,0], [3,0], [4,0]]);
+pentas.push([[0,0], [0,1], [0,2], [0,3], [0,4]]);
 
 // 1 vaiation of X figure
+pentas.push([[0,0], [1,0], [2,0], [1,-1], [1,1]]);
 
 //console.log("debug");
 //console.log(pentas);
