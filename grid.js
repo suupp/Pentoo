@@ -19,10 +19,10 @@ var drawGridRects = function(num_rectangles_wide, num_rectangles_tall, boundingR
 // draw random rectangle //
 
 var fillRandomRect = function(num_rectangles_wide, num_rectangles_tall) {
-    position_x = Math.floor(Math.random()*num_rectangles_wide);
-    position_y = Math.floor(Math.random()*num_rectangles_tall);
-    drawRect(position_x, position_y, 'blue');
-    Board[position_x][position_y]="#0000FF";
+    random_x = Math.floor(Math.random()*num_rectangles_wide);
+    random_y = Math.floor(Math.random()*num_rectangles_tall);
+    drawRect(random_x, random_y, 'blue');
+    Board[random_x][random_y]="#0000FF";
 }
 
 // draw a single rectangle in a given position //

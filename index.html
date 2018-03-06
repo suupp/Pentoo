@@ -13,9 +13,9 @@
 <canvas id="myCanvas" width="700" height="0"></canvas>
 <script type="text/javascript">
 
-  var x = prompt('width','');
-  var y = prompt('height','');
-
+    var x = prompt('Enter board width (2 - 15)','');
+    var y = prompt('Enter board height (2 - 10)','');
+    
    // var x = 8;
     //var y = 4;
     
@@ -47,7 +47,7 @@
     var solveBoard = function() {
         
         console.log('STEP #'+counter+' Solved=',solutionFound);
-        if(solutionFound || ForceStop || counter>100000) return;
+        if(solutionFound || ForceStop || counter>200000) return;
         
         var emptyRect=findFirstEmptyRect();
         counter++;
@@ -72,6 +72,7 @@
         drawGridRects(x, y, paper.view.bounds);
         Board = Array(BoardWidth).fill().map(() => Array(BoardHeight).fill(false));
         staticRects = 0;
+        if ((BoardWidth*BoardHeight) % 5 > 0) document.getElementById('SolveButton').disabled = true; else document.getElementById('SolveButton').disabled = false;
     }
 
 </script>
@@ -84,9 +85,9 @@
 <input type="button" id="SolveButton" value="SOLVE!" onclick="solutionFound=false;ForceStop=false;counter=0;shuffle(pentas);solveBoard(); drawBoard()">
 <input type="button" value="RESET" onclick="resetBoard()">
 
+</p>
 <script type="text/javascript">
 if ((BoardWidth*BoardHeight) % 5 > 0) document.getElementById('SolveButton').disabled = true;
 </script>
-</p>
 </body>
 </html>
