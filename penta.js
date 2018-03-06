@@ -12,6 +12,16 @@ function shuffle(a) {
     return a;
 }
 
+// draw board from an image we store in Board array
+
+var drawBoard = function() {
+    var color='white';
+    for (let position_x = 0; position_x < BoardWidth; position_x++)
+        for (let position_y = 0; position_y < BoardHeight; position_y++) {
+            if (Board[position_x][position_y]) color = Board[position_x][position_y];            drawRect(position_x, position_y, color);
+        }
+}
+
 // draw a pentamino figure. figure is an array of 5. return true if drawn successfully
 
 var drawFigure = function(position_x, position_y, figure, color) {
@@ -38,8 +48,8 @@ figure.forEach(function(element) {
 
 // if the figure fits, draw it
     figure.forEach(function(element) {
-        drawRect(position_x+element[0], position_y+element[1], color);
-        Board[position_x+element[0]][position_y+element[1]]=true;
+        //drawRect(position_x+element[0], position_y+element[1], color);
+        Board[position_x+element[0]][position_y+element[1]]=color;
     });
 // if the everything went successfull, we return true
     return true;
@@ -49,7 +59,7 @@ figure.forEach(function(element) {
 
 var clearFigure = function(position_x, position_y, figure) {
     figure.forEach(function(element) {
-        drawRect(position_x+element[0], position_y+element[1], 'white');
+        //drawRect(position_x+element[0], position_y+element[1], 'white');
         Board[position_x+element[0]][position_y+element[1]]=false;
     });
 }

@@ -19,18 +19,19 @@ var drawGridRects = function(num_rectangles_wide, num_rectangles_tall, boundingR
 // draw random rectangle //
 
 var fillRandomRect = function(num_rectangles_wide, num_rectangles_tall) {
-bRect = new paper.Path.Rectangle(width_per_rectangle*Math.floor(Math.random()*num_rectangles_wide)+1, height_per_rectangle*Math.floor(Math.random()*num_rectangles_tall)+1, width_per_rectangle-2 ,height_per_rectangle-2);
-bRect.fillColor = 'blue';
-if (bRect.fillColor = 'blue') {
-}
+    position_x = Math.floor(Math.random()*num_rectangles_wide);
+    position_y = Math.floor(Math.random()*num_rectangles_tall);
+    drawRect(position_x, position_y, 'blue');
+    Board[position_x][position_y]="#0000FF";
 }
 
 // draw a single rectangle in a given position //
 
 var drawRect = function(position_x, position_y, color) {
-            aRect = new paper.Path.Rectangle(position_x * width_per_rectangle, position_y * height_per_rectangle, width_per_rectangle, height_per_rectangle);
-            aRect.strokeColor = 'black';
-            aRect.fillColor = color;
+            ctx.fillStyle = color;
+            ctx.fillRect(position_x * width_per_rectangle, position_y * height_per_rectangle, width_per_rectangle, height_per_rectangle);
+            ctx.strokeStyle=0;
+            ctx.strokeRect(position_x * width_per_rectangle, position_y * height_per_rectangle, width_per_rectangle, height_per_rectangle);
 }
 
 // verify whether board's position is empty or not
