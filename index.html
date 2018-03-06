@@ -5,7 +5,6 @@
   <script type="text/javascript" src="grid.js"></script>
   <script type="text/javascript" src="penta.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.js"></script>
- 
   <style media="all">
            @import url(style.css);
         </style>
@@ -13,10 +12,14 @@
 <body>
 <canvas id="myCanvas" width="700" height="0"></canvas>
 <script type="text/javascript">
+
 //  var x = prompt('width','');
 //  var y = prompt('height','');
     var x = 10;
     var y = 7;
+    
+    var elem = document.getElementById('myCanvas');
+    elem.height=elem.width/x*y;
     
 // declare board size equal to grid size     
     const BoardWidth = x;
