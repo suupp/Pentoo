@@ -10,21 +10,22 @@
         </style>
 </head>
 <body>
-<canvas id="myCanvas" width="700" height="0"></canvas>
+<canvas id="myCanvas" width="800" height="0"></canvas>
 <script type="text/javascript">
 
 //  var x = prompt('width','');
 //  var y = prompt('height','');
     var x = 10;
-    var y = 7;
+    var y = 4;
     
     var elem = document.getElementById('myCanvas');
     elem.height=elem.width/x*y;
     
-// declare board size equal to grid size     
+// declare board size equal to grid size and initialize the board array    
     const BoardWidth = x;
     const BoardHeight = y;
-//  console.log('BoardWidth='+BoardWidth);
+    var Board = Array(BoardWidth).fill().map(() => Array(BoardHeight).fill(false));
+    //console.log('Board='+Board);
 
 // set canvas height based on canvas width in order to have square cells
     var canvas = document.getElementById("myCanvas");
@@ -33,23 +34,38 @@
 // create a pointer to canvas image (needed for isRectEmpty function) 
     var ctx = canvas.getContext("2d");
 
+
 // puzzle solver
     var solutionFound = false;
-    var counter=1;
-    var solve = function() {
+    var ForceStop=false;
+    var counter=0;
+    var solveBoard = function() {
         
-        if(solutionFound || counter>1) return;
+     //   console.log('STEP #'+counter+' Solved=',solutionFound);
+        if(solutionFound || ForceStop || counter>10000) return;
         
-        emptyRect=findFirstEmptyRect();
+        var emptyRect=findFirstEmptyRect();
+        counter++;
+        
         if(!emptyRect) solutionFound=true;
-        else {
-                figure_index=0;
-                // try placing figures until fit is found
-                while(!drawFigure(emptyRect[0], emptyRect[1], pentas[figure_index])) figure_index++;
-                console.log('step #'+counter+' '+emptyRect);
-                counter=counter+1;
-                solve();
+        else {  
+                // find a figure that fits
+                for (var fig in pentas) {
+                        if(drawFigure(emptyRect[0], emptyRect[1], pentas[fig])) {
+                           // console.log('Drawing Figure '+fig+' at '+emptyRect);
+                            solveBoard();
+                            if(!solutionFound) {
+                               // console.log('Clearing Figure '+fig+' at '+emptyRect);
+                                clearFigure(emptyRect[0], emptyRect[1], pentas[fig]);
+                            }
+                        }
+                    }
             }
+    }
+    
+    var resetBoard = function () {
+        drawGridRects(x, y, paper.view.bounds);
+        Board = Array(BoardWidth).fill().map(() => Array(BoardHeight).fill(false));
     }
 
 </script>
@@ -58,10 +74,8 @@
 </script>
 <p>
 <input type="button" value="ADD BLOCK" onclick="fillRandomRect(x,y)">
-<input type="button" value="SOLVE!" onclick="solutionFound=false;counter=0;solve()">
-<input type="button" value="STOP" onclick="solutionFound=true">
-<input type="button" value="RESET" onclick="drawGridRects(x, y, paper.view.bounds)">
-<input type="button" value="FindEmpty" onclick="console.log(findFirstEmptyRect())">
+<input type="button" value="SOLVE!" onclick="solutionFound=false;ForceStop=false;counter=0;shuffle(pentas);solveBoard();">
+<input type="button" value="RESET" onclick="resetBoard()">
 </p>
 </body>
 </html>

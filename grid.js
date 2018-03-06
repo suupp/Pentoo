@@ -43,15 +43,4 @@ var isRectEmpty = function(position_x, position_y) {
     return pixeldata[0]+pixeldata[1]+pixeldata[2]==255*3;
 }
 
-// search the board for a first available empty rect 
-
-var findFirstEmptyRect = function() {
-    for (line = 0; line < BoardHeight; line++) { 
-        for (column = 0; column < BoardWidth; column++) {
-            if(isRectEmpty(column,line)) return [column,line];
-        }
-    }
-    // if empty rect not found (the board is fully filled) return false 
-    return false;
-}
 

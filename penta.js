@@ -1,12 +1,24 @@
 var pentas = [];
 
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
 // draw a pentamino figure. figure is an array of 5. return true if drawn successfully
 
 var drawFigure = function(position_x, position_y, figure, color) {
 // if color isn't passed with parameters, we use a random one
     if (color == null) var color = randomColor();
 
-// check for board size fitment, return false if no fit
+// check for board boundaries fitment, return false if no fit
 var fit = true;
   figure.forEach(function(element) {
         if (position_x+element[0]>BoardWidth-1 || position_x+element[0]<0) fit=false;
@@ -18,7 +30,7 @@ var fit = true;
 
 // check for location fitment
 figure.forEach(function(element) {
-        if(!isRectEmpty(position_x+element[0],position_y+element[1])) fit=false;
+        if(Board[position_x+element[0]][position_y+element[1]]) fit=false;
     });
 
 // exit if not fit
@@ -27,6 +39,7 @@ figure.forEach(function(element) {
 // if the figure fits, draw it
     figure.forEach(function(element) {
         drawRect(position_x+element[0], position_y+element[1], color);
+        Board[position_x+element[0]][position_y+element[1]]=true;
     });
 // if the everything went successfull, we return true
     return true;
@@ -35,7 +48,22 @@ figure.forEach(function(element) {
 // wash out pentamino figure from the board
 
 var clearFigure = function(position_x, position_y, figure) {
-    drawFigure(position_x, position_y, figure, 'white');
+    figure.forEach(function(element) {
+        drawRect(position_x+element[0], position_y+element[1], 'white');
+        Board[position_x+element[0]][position_y+element[1]]=false;
+    });
+}
+
+// search the board for a first available empty rect 
+
+var findFirstEmptyRect = function() {
+    for (line = 0; line < BoardHeight; line++) { 
+        for (column = 0; column < BoardWidth; column++) {
+            if(!Board[column][line]) return [column,line];
+        }
+    }
+    // if empty rect not found (the board is fully filled) return false 
+    return false;
 }
 
 // fill in the array with pentomino figures per https://en.wikipedia.org/wiki/Pentomino#Symmetry
