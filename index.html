@@ -13,21 +13,22 @@
 <canvas id="myCanvas" width="700" height="0"></canvas>
 <script type="text/javascript">
 
-//  var x = prompt('width','');
-//  var y = prompt('height','');
-    var x = 8;
-    var y = 4;
+  var x = prompt('width','');
+  var y = prompt('height','');
+
+   // var x = 8;
+    //var y = 4;
     
     var elem = document.getElementById('myCanvas');
     elem.height=elem.width/x*y;
     
 // declare board size equal to grid size and initialize the board array    
-    const BoardWidth = x;
-    const BoardHeight = y;
+    const BoardWidth = parseInt(x);
+    const BoardHeight = parseInt(y);
     var Board = Array(BoardWidth).fill().map(() => Array(BoardHeight).fill(false));
     var staticRects = 0;
     
-    //console.log('Board='+Board);
+    console.log('Board='+Board);
 
 // set canvas height based on canvas width in order to have square cells
     var canvas = document.getElementById("myCanvas");
