@@ -19,17 +19,34 @@ var drawGridRects = function(num_rectangles_wide, num_rectangles_tall, boundingR
 // draw random rectangle //
 
 var fillRandomRect = function(num_rectangles_wide, num_rectangles_tall) {
+    // make sure if there's an empty space on the board
+    var emptyRect=findFirstEmptyRect();
+    if(!emptyRect) return;
+    
+    // choose random place 
     random_x = Math.floor(Math.random()*num_rectangles_wide);
     random_y = Math.floor(Math.random()*num_rectangles_tall);
-    drawRect(random_x, random_y, 'blue');
-    Board[random_x][random_y]="#0000FF";
+    
+    // check whether the place is already occupied, if so - find another one
+    if(Board[random_x][random_y]) fillRandomRect(num_rectangles_wide, num_rectangles_tall);
+    else {
+        Board[random_x][random_y]="#0000ff";
+        drawBoard();
+    }
 }
 
 // draw a single rectangle in a given position //
 
 var drawRect = function(position_x, position_y, color) {
-            ctx.fillStyle = color;
+            if (color=="#0000ff") {
+                // fill with texture a static block
+                ctx.fillStyle = ctx.createPattern(brickImage, "repeat");
+            } else {
+                ctx.fillStyle = color;
+            }
             ctx.fillRect(position_x * width_per_rectangle, position_y * height_per_rectangle, width_per_rectangle, height_per_rectangle);
+            
+            // draw black outline
             ctx.strokeStyle=0;
             ctx.strokeRect(position_x * width_per_rectangle, position_y * height_per_rectangle, width_per_rectangle, height_per_rectangle);
 }

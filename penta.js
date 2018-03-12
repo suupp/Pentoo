@@ -15,10 +15,10 @@ function shuffle(a) {
 // draw board from an image we store in Board array
 
 var drawBoard = function() {
-    var color='white';
-    for (let position_x = 0; position_x < BoardWidth; position_x++)
-        for (let position_y = 0; position_y < BoardHeight; position_y++) {
-            if (Board[position_x][position_y]) color = Board[position_x][position_y];            drawRect(position_x, position_y, color);
+    var color;
+    for (var position_x = 0; position_x < BoardWidth; position_x++)
+        for (var position_y = 0; position_y < BoardHeight; position_y++) {
+            if (Board[position_x][position_y]) color = Board[position_x][position_y]; else color='white';           drawRect(position_x, position_y, color);
         }
 }
 
