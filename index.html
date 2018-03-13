@@ -50,13 +50,14 @@ brickImage.src = "brick.png";
     var counter=0;
     var solveBoard = function() {
         
-        console.log('STEP #'+counter+' Solved=',solutionFound);
+        console.log('STEP #'+counter+' Solved='+solutionFound);
         
         //exit if solution found
         if(solutionFound || ForceStop || counter>200000) return;
         
         var emptyRect=findFirstEmptyRect();
         counter++;
+        if (counter % 50 == 0) drawBoard();
         
         if(!emptyRect) solutionFound=true;
         else {  
@@ -78,7 +79,7 @@ brickImage.src = "brick.png";
         drawGridRects(x, y, paper.view.bounds);
         Board = Array(BoardWidth).fill().map(() => Array(BoardHeight).fill(false));
         staticRects = 0;
-        if ((BoardWidth*BoardHeight) % 5 > 0) document.getElementById('SolveButton').disabled = true; else document.getElementById('SolveButton').disabled = false;
+        if ((BoardWidth*BoardHeight) % 5 > 0)  document.getElementById('SolveButton').disabled = true; else document.getElementById('SolveButton').disabled = false;
     }
 
 </script>
@@ -88,7 +89,7 @@ brickImage.src = "brick.png";
 <p>
 
 <input type="button" value="ADD BLOCK" onclick="fillRandomRect(x,y); staticRects++; if ((BoardWidth*BoardHeight-staticRects) % 5 == 0) {document.getElementById('SolveButton').disabled = false} else {document.getElementById('SolveButton').disabled = true}">
-<input type="button" id="SolveButton" value="SOLVE!" onclick="solutionFound=false;ForceStop=false;counter=0;shuffle(pentas);solveBoard();drawBoard();console.log('Board='+Board);">
+<input type="button" id="SolveButton" value="SOLVE!" onclick="solutionFound=false;ForceStop=false;counter=0;shuffle(pentas);solveBoard(); if(solutionFound==false) alert('Unable to find a solution!');drawBoard();console.log('Board='+Board); console.log('solutionFound='+solutionFound);">
 <input type="button" value="RESET" onclick="resetBoard()">
 
 </p>
